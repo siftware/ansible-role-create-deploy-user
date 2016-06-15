@@ -38,15 +38,16 @@ An example playbook of how to use the role.
 
 - hosts: all
   roles:
-     - { role: deploy-user
-         deploy_user: deploy
-         httpd_user: www-data
-         key_server: https://code.siftware.com
-         ssh_users:
-            - ashleyhindle
-            - iain
-            - stephen
-       }
+  - { role: deploy-user,
+      deploy_user: deploy,
+      httpd_user: www-data,
+      key_server: 'https://code.siftware.com',
+      ssh_users: [
+        ashleyhindle,
+        iain,
+        stephen,
+      ]
+    }
 ```
 
 License

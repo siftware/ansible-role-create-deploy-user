@@ -8,7 +8,7 @@ httpd_user: www-data
 
 # Base URL for obtaining public SSH keys
 # Usage will be <key_server>/<user>.keys
-key_server: https://code.siftware.com
+key_server: 'https://code.siftware.com'
 
 # List of users that will be able to SSH to the deploy_user account
 ssh_users:
