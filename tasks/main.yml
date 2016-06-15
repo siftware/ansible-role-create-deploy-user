@@ -1,0 +1,8 @@
+---
+
+- name: Create shell user
+  user: name="{{ deploy_user }}" shell=/bin/bash groups="{{ httpd_user }}" append=yes generate_ssh_key=yes
+
+- name: Install authorised users' SSH keys
+  authorized_key: user="{{ deploy_user }}" key="https://code.siftware.com/{{ item }}.keys" state=present
+  with_items: "{{ ssh_users }}"
