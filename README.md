@@ -30,6 +30,9 @@ deploy_user_add_jenkins_ssh_key: true
 
 # List of additional public SSH keys. Useful for automated deployment systems
 deploy_user_additional_ssh_keys: []
+
+# Whether or not to allow the user to SSH back to itself
+deploy_user_allow_self_ssh: false
 ```
 
 Example Playbook
@@ -53,7 +56,8 @@ An example playbook of how to use the role.
       ],
       deploy_user_additional_ssh_keys: [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYM4DgLfa0XaA7ZhtbVlRybyZ+u1awfBW9LY6EzkeDUszDYs1or2sQeAZXLINV9Ha/HXklxEjvb1BmPcmeavYRMsQ0ctOC2x3Cft4v3VuI46ORtaFk5C1uliDmo4kkts19lPIMa53UjSrlKcpWiRTZxaTZhkY8CJbGXR/0UYYzs1LLRcMiyq1Rh1pWj3pKrRInKcnRyKmWTfkcxU+uMjJoP2GZCyl8KgmQOOn10Uh0QB9TtL3DcJWsAmAQuRrQjrdpWPpbhgCB6t2jElOB7cXQNYvStHtZcA8K3jhTyN+qYmm7uiJtt60UhKRHITejwrqsjcdnGQBrLx4bOjE6Zo4/ jenkins@code.siftware.net"
-      ]
+      ],
+      deploy_user_allow_self_ssh: false
     }
 ```
 

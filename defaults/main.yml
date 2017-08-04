@@ -21,3 +21,6 @@ deploy_user_add_jenkins_ssh_key: true
 
 # List of additional public SSH keys. Useful for automated deployment systems
 deploy_user_additional_ssh_keys: []
+
+# Whether or not to allow the user to SSH back to itself
+deploy_user_allow_self_ssh: false

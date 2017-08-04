@@ -25,3 +25,7 @@
                   key="{{ item }}"
                   state=present
   with_items: "{{ deploy_user_additional_ssh_keys }}"
+
+- name: Allow user to SSH back to itself
+  shell: if `cat .ssh/authorized_keys | grep -qf .ssh/id_rsa.pub`; then echo "key exists"; else cat .ssh/id_rsa.pub >> .ssh/authorized_keys; echo "key added"; fi
+  when: deploy_user_allow_self_ssh
