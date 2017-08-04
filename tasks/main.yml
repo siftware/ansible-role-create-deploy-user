@@ -12,9 +12,16 @@
                   state=present
   with_items: "{{ ssh_users }}"
 
-- name: Install build servers' public SSH keys
+- name: Install build servers' public SSH key
   authorized_key: user="{{ deploy_user }}"
                   key="{{ item }}"
                   state=present
   with_file:
     - files/jenkins
+  when: deploy_user_add_jenkins_ssh_key
+
+- name: Install additional public SSH keys
+  authorized_key: user="{{ deploy_user }}"
+                  key="{{ item }}"
+                  state=present
+  with_items: "{{ deploy_user_additional_ssh_keys }}"

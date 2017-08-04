@@ -8,10 +8,16 @@ httpd_user: www-data
 
 # Base URL for obtaining public SSH keys
 # Usage will be <key_server>/<user>.keys
-key_server: 'https://code.siftware.com'
+key_server: https://code.siftware.com
 
 # List of users that will be able to SSH to the deploy_user account
 ssh_users:
   - ashleyhindle
   - bealers
   - iain
+
+# Whether or not to install the public SSH key for Siftware's Jenkins CI server
+deploy_user_add_jenkins_ssh_key: true
+
+# List of additional public SSH keys. Useful for automated deployment systems
+deploy_user_additional_ssh_keys: []
