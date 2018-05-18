@@ -8,7 +8,7 @@
 
 - name: Install authorised users' public SSH keys
   authorized_key: user="{{ deploy_user }}"
-                  key="https://code.siftware.com/{{ item }}.keys"
+                  key="{{ key_server }}/{{ item }}.keys"
                   state=present
   with_items: "{{ ssh_users }}"
 
