@@ -21,9 +21,9 @@ key_server: https://code.siftware.com
 
 # List of users that will be able to SSH to the deploy_user account
 ssh_users:
-  - ashleyhindle
   - bealers
   - iain
+  - Kalaitzis
 
 # Whether or not to install the public SSH key for Siftware's Jenkins CI server
 deploy_user_add_jenkins_ssh_key: true
