@@ -1,31 +1,27 @@
 ---
 
 - name: Create shell user
-  user: name="{{ deploy_user }}"
-        shell=/bin/bash groups="{{ httpd_user }}"
-        append=yes
-        generate_ssh_key=yes
+  user:
+    name: "{{ deploy_user_name }}"
+    shell: /bin/bash
+    groups: "{{ deploy_user_additional_groups }}"
+    append: yes
+    generate_ssh_key: yes
 
 - name: Install authorised users' public SSH keys
-  authorized_key: user="{{ deploy_user }}"
-                  key="{{ key_server }}/{{ item }}.keys"
-                  state=present
-  with_items: "{{ ssh_users }}"
-
-- name: Install build servers' public SSH key
-  authorized_key: user="{{ deploy_user }}"
-                  key="{{ item }}"
-                  state=present
-  with_file:
-    - files/jenkins
-  when: deploy_user_add_jenkins_ssh_key
+  ansible.posix.authorized_key:
+    user: "{{ deploy_user_name }}"
+    key: "{{ deploy_user_key_server }}/{{ item }}.keys"
+    state: present
+  with_items: "{{ deploy_user_ssh_users }}"
 
 - name: Install additional public SSH keys
-  authorized_key: user="{{ deploy_user }}"
-                  key="{{ item }}"
-                  state=present
+  ansible.posix.authorized_key:
+    user: "{{ deploy_user_name }}"
+    key: "{{ item }}"
+    state: present
   with_items: "{{ deploy_user_additional_ssh_keys }}"
 
 - name: Allow user to SSH back to itself
-  shell: if `cat ~{{ deploy_user }}/.ssh/authorized_keys | grep -qf ~{{ deploy_user }}/.ssh/id_rsa.pub`; then echo "key exists"; else cat ~{{ deploy_user }}/.ssh/id_rsa.pub >> ~{{ deploy_user }}/.ssh/authorized_keys; echo "key added"; fi
+  shell: if `cat ~{{ deploy_user_name }}/.ssh/authorized_keys | grep -qf ~{{ deploy_user_name }}/.ssh/id_rsa.pub`; then echo "key exists"; else cat ~{{ deploy_user_name }}/.ssh/id_rsa.pub >> ~{{ deploy_user_name }}/.ssh/authorized_keys; echo "key added"; fi
   when: deploy_user_allow_self_ssh

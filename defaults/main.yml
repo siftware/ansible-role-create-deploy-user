@@ -1,22 +1,20 @@
 ---
 
 # Name of the user to be created
-deploy_user: deploy
+deploy_user_name: deploy
 
 # User group that the deploy_user will be added to
-httpd_user: www-data
+deploy_user_additional_groups:
+  - www-data
 
 # Base URL for obtaining public SSH keys
 # Usage will be <key_server>/<user>.keys
-key_server: https://code.siftware.com
+deploy_user_key_server: https://gitlab.com
 
 # List of users that will be able to SSH to the deploy_user account
-ssh_users:
-  - bealers
-  - iain
-
-# Whether or not to install the public SSH key for Siftware's Jenkins CI server
-deploy_user_add_jenkins_ssh_key: true
+deploy_user_ssh_users:
+  - alice
+  - bob
 
 # List of additional public SSH keys. Useful for automated deployment systems
 deploy_user_additional_ssh_keys: []
